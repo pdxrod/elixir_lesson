@@ -70,4 +70,49 @@ should be used only when necessary.\"
 These examples miss Crypto, Binary and Queue. These can be found at
 https://www.tutorialspoint.com/elixir/elixir_libraries.htm.
 
+
+System commands
+
+defmodule StringFunctions do
+  def print_out_ls() do
+    pair = System.cmd "ls", []
+    strs = elem( pair, 0 )
+    list = String.split( strs, \"\\n\" )
+    Enum.each( list, fn( s ) -> IO.puts( s ) end )
+  end
+end
+
+IO.puts "Current folder"
+IO.puts System.cwd()
+IO.puts ""
+cmd = System.cmd "echo", ["Hello", "World"]
+IO.puts( elem( cmd, 0) )
+IO.puts "Creating NEWFILE\\n"
+System.cmd "touch", ["NEWFILE"]
+StringFunctions.print_out_ls()
+IO.puts "Deleting NEWFILE\\n"
+System.cmd "rm", ["NEWFILE"]
+StringFunctions.print_out_ls()
+
 """
+
+defmodule StringFunctions do
+  def print_out_ls() do
+    pair = System.cmd "ls", []
+    strs = elem( pair, 0 )
+    list = String.split( strs, "\n" )
+    Enum.each( list, fn( s ) -> IO.puts( s ) end )
+  end
+end
+
+IO.puts "Current folder"
+IO.puts System.cwd()
+IO.puts ""
+cmd = System.cmd "echo", ["Hello", "World"]
+IO.puts( elem( cmd, 0) )
+IO.puts "Creating NEWFILE\n"
+System.cmd "touch", ["NEWFILE"]
+StringFunctions.print_out_ls()
+IO.puts "Deleting NEWFILE\n"
+System.cmd "rm", ["NEWFILE"]
+StringFunctions.print_out_ls()
