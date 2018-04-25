@@ -78,6 +78,56 @@ IO.inspect blocks
 blocks = Loop.get_n_blocks( blocks, 2 )
 IO.inspect blocks
 
+IO.puts("""
+
+
+
+Streams - like Enums but lazy
+
+
+even? = &(rem(&1, 2) == 0)
+res = 1..100 |>
+      Stream.map( & ( &1 * 3 ) ) |>
+      Stream.filter( even? ) |>
+      Enum.sum
+IO.puts(res)
+
+""")
+even? = &(rem(&1, 2) == 0)
+res = 1..10 |>
+      Stream.map( & ( &1 * 3 ) ) |>
+      Stream.filter( even? ) |>
+      Enum.sum
+IO.puts(res)
+
+IO.puts """
+
+Stream.cycle([[name: "John", age: "42", id: "4774", plan: "premium"]])
+|> Stream.take(10)
+|> Stream.map(fn record ->
+  [Enum.join(Keyword.values(record), ","), "\n"]
+  end)
+|> Stream.into(File.stream!("records.csv"))
+|> Stream.run
+
+strs = System.cmd "cat", [ "records.csv" ]
+IO.puts elem( strs, 0 )
+Note that this doesn't work:
+System.cmd 'cat', [ 'records.csv' ]
+"""
+
+
+Stream.cycle([[name: "John", age: "42", id: "4774", plan: "premium"]])
+|> Stream.take(10)
+|> Stream.map(fn record ->
+  [Enum.join(Keyword.values(record), ","), "\n"]
+  end)
+|> Stream.into(File.stream!("records.csv"))
+|> Stream.run
+
+strs = System.cmd "cat", [ "records.csv" ]
+IO.puts elem( strs, 0 )
+
 IO.puts """
 
 Now run processes.ex

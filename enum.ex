@@ -92,26 +92,6 @@ res =
 
 IO.puts(res)
 
-IO.puts("""
-
-
-Streams are similar but lazy
-
-res = 1..100 |>
-      Stream.map( & ( &1 * 3 ) ) |>
-      Stream.filter( odd? ) |>
-      Enum.sum
-IO.puts(res)
-""")
-
-res =
-  1..100
-  |> Stream.map(&(&1 * 3))
-  |> Stream.filter(odd?)
-  |> Enum.sum()
-
-IO.puts(res)
-
 IO.puts """
 
 
