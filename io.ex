@@ -103,30 +103,28 @@ IO.puts(res)
 IO.puts """
 
 Stream.cycle([[name: "John", age: "42", id: "4774", plan: "premium"]])
-|> Stream.take(10)
+|> Stream.take(1_000)
 |> Stream.map(fn record ->
   [Enum.join(Keyword.values(record), ","), "\n"]
   end)
 |> Stream.into(File.stream!("records.csv"))
 |> Stream.run
-
-strs = System.cmd "cat", [ "records.csv" ]
-IO.puts elem( strs, 0 )
-Note that this doesn't work:
-System.cmd 'cat', [ 'records.csv' ]
+stream = File.stream!( "records.csv" )
+strs = Enum.take(stream, 10)
+IO.puts strs
 """
 
 
 Stream.cycle([[name: "John", age: "42", id: "4774", plan: "premium"]])
-|> Stream.take(10)
+|> Stream.take(1_000)
 |> Stream.map(fn record ->
   [Enum.join(Keyword.values(record), ","), "\n"]
   end)
 |> Stream.into(File.stream!("records.csv"))
 |> Stream.run
-
-strs = System.cmd "cat", [ "records.csv" ]
-IO.puts elem( strs, 0 )
+stream = File.stream!( "records.csv" )
+strs = Enum.take(stream, 10)
+IO.puts strs
 
 IO.puts """
 
