@@ -126,6 +126,105 @@ stream = File.stream!( "records.csv" )
 strs = Enum.take(stream, 10)
 IO.puts strs
 
+
+IO.puts """
+
+These examples come from Elixir help: iex> h Stream
+showing the difference betwen an Enum and a Stream approach
+
+1..3
+   |> Enum.map(&IO.inspect(&1))
+   |> Enum.map(&(&1 * 2))
+   |> Enum.map(&IO.inspect(&1))
+IO.puts ''
+stream = 1..3
+  |> Stream.map(&IO.inspect(&1))
+  |> Stream.map(&(&1 * 2))
+  |> Stream.map(&IO.inspect(&1))
+  Enum.to_list(stream)
+
+See the difference between the orders of processing
+"""
+
+1..3
+   |> Enum.map(&IO.inspect(&1))
+   |> Enum.map(&(&1 * 2))
+   |> Enum.map(&IO.inspect(&1))
+IO.puts ''
+stream = 1..3
+  |> Stream.map(&IO.inspect(&1))
+  |> Stream.map(&(&1 * 2))
+  |> Stream.map(&IO.inspect(&1))
+  Enum.to_list(stream)
+
+IO.puts """
+
+See the difference in timing between enums and streams
+
+defmodule Benchmark do
+  def measure(function) do
+    function
+    |> :timer.tc
+    |> elem(0)
+    |> Kernel./(1_000)
+  end
+
+  def waste_time_enum( n ) do
+    if n > 0 do
+      1..n
+         |> Enum.map(&(&1 * 2))
+      waste_time_enum( n - 1)
+    end
+  end
+
+  def waste_time_stream( n ) do
+    if n > 0 do
+      stream = 1..n
+        |> Stream.map(&(&1 * 2))
+      Enum.to_list(stream)
+      waste_time_stream( n - 1)
+    end
+  end
+end
+
+enum = Benchmark.measure(fn -> Benchmark.waste_time_enum( 25 ) end)
+stream = Benchmark.measure(fn -> Benchmark.waste_time_stream( 25 ) end)
+
+IO.puts "Enum   \#{ enum }"
+IO.puts "Stream \#{ stream }"
+"""
+defmodule Benchmark do
+  def measure(function) do
+    function
+    |> :timer.tc
+    |> elem(0)
+    |> Kernel./(1_000)
+  end
+
+  def waste_time_enum( n ) do
+    if n > 0 do
+      1..n
+         |> Enum.map(&(&1 * 2))
+      waste_time_enum( n - 1)
+    end
+  end
+
+  def waste_time_stream( n ) do
+    if n > 0 do
+      stream = 1..n
+        |> Stream.map(&(&1 * 2))
+      Enum.to_list(stream)
+      waste_time_stream( n - 1)
+    end
+  end
+end
+
+enum = Benchmark.measure(fn -> Benchmark.waste_time_enum( 25 ) end)
+stream = Benchmark.measure(fn -> Benchmark.waste_time_stream( 25 ) end)
+
+IO.puts "Enum   #{ enum }"
+IO.puts "Stream #{ stream }"
+
 IO.puts """
 
 Now run processes.ex
