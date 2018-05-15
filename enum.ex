@@ -117,6 +117,46 @@ IO.puts(for <<c <- \" hello world \">>, c != ?\\s, into: \"\", do: <<c>>)
 """
 IO.puts(for <<c <- " hello world ">>, c != ?\s, into: "", do: <<c>>)
 
+IO.puts """
+
+
+Types
+
+defmodule Util do
+  types = ~w[function nil integer binary bitstring list map float atom tuple pid port reference]
+  for type <- types do
+    def typeof(x) when unquote(:"is_\#{type}")(x), do: unquote(type)
+  end
+end
+
+list = [:a, :b]
+IO.write "[:a, :b] is a "
+IO.puts Util.typeof list
+IO.write "'' is a "
+IO.puts Util.typeof ''
+IO.write "\"\" is a "
+IO.puts Util.typeof ""
+IO.write "5.6 is a "
+IO.puts Util.typeof 5.6
+"""
+
+defmodule Util do
+  types = ~w[function nil integer binary bitstring list map float atom tuple pid port reference]
+  for type <- types do
+    def typeof(x) when unquote(:"is_#{type}")(x), do: unquote(type)
+  end
+end
+
+list = [:a, :b]
+IO.write "[:a, :b] is a "
+IO.puts Util.typeof list
+IO.write "'' is a "
+IO.puts Util.typeof ''
+IO.write "\"\" is a "
+IO.puts Util.typeof ""
+IO.write "5.6 is a "
+IO.puts Util.typeof 5.6
+
 IO.puts("""
 
 Now run structs.ex
