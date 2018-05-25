@@ -116,3 +116,9 @@ StringFunctions.print_out_ls()
 IO.puts "Deleting NEWFILE\n"
 System.cmd "rm", ["NEWFILE"]
 StringFunctions.print_out_ls()
+
+IO.puts """
+
+
+Now run with_error.ex
+"""
