@@ -30,27 +30,28 @@ IO.inspect """
 """
 
 defmodule Address do
-  defstruct street: nil, city: nil
+  defstruct street: nil, city: "New York"
 end
 
 defmodule Organization do
-  defstruct name: "IBM", address: nil
+  defstruct name: nil, address: nil
 
   def create_organization( params ) do
     %Organization{}
   end
+end
 
-  def create_address( params ) do
-    %Address{}
+defmodule Main do
+  def main() do
+    result = with organization <- Organization.create_organization({}),
+               :ok <- :ok do
+               {:ok, organization}
+             else
+               %{"error" => reason} -> {:error, reason}
+               error -> error
+             end
+    IO.inspect result
   end
 end
 
-params = {}
-
-result = with {:ok, organization} <- Organization.create_organization(params),
-           %Organization{address: nil, name: "IBM"} <- Organization.create_address(organization, params) do
-           {:ok, %{organization | address: address}}
-         else
-           {:error, err} -> {:error, err}
-         end
-IO.inspect result
+Main.main()
