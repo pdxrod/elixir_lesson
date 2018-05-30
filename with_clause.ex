@@ -25,7 +25,7 @@ IO.inspect with {:ok, width} <- Map.fetch(opts, :width),
      {:ok, depth} <- Map.fetch(opts, :depth),
      do: {:ok, width * depth}
 
-IO.inspect """
+IO.puts """
 
 """
 
@@ -34,16 +34,21 @@ defmodule Address do
 end
 
 defmodule Organization do
-  defstruct name: nil, address: nil
+  defstruct name: "IBM", address: nil
+
+  def create_address( params ) do
+    %Address{ street: params[:street], city: params[:city] }
+  end
 
   def create_organization( params ) do
-    %Organization{}
+    %Organization{name: params[:name], address: params[:address]}
   end
 end
 
 defmodule Main do
   def main() do
-    result = with organization <- Organization.create_organization({}),
+    result = with organization <-
+              Organization.create_organization( address: Organization.create_address(street: "1 Broadway") ),
                :ok <- :ok do
                {:ok, organization}
              else
