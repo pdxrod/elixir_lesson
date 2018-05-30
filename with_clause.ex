@@ -37,18 +37,19 @@ defmodule Organization do
   defstruct name: "IBM", address: nil
 
   def create_address( params ) do
-    %Address{ street: params[:street], city: params[:city] }
+    %Address{ street: params[:street] }
   end
 
   def create_organization( params ) do
-    %Organization{address: params[:address]}
+    %Organization{ address: params[:address] }
   end
 end
 
 defmodule Main do
   def main() do
     result = with organization <-
-              Organization.create_organization( address: Organization.create_address(street: "1 Broadway") ),
+               Organization.create_organization( address:
+                  Organization.create_address(street: "1 Broadway") ),
                :ok <- :ok do
                {:ok, organization}
              else
