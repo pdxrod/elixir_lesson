@@ -50,7 +50,8 @@ defmodule Main do
     result = with address <-
                 Organization.create_address(street: "1 Broadway"),
                   organization <-
-                Organization.create_organization( %{ address: address } )
+                Organization.create_organization( %{ address: address } ),
+                {:ok, organization} <- Organization.create_organization( params )
              do
                {:ok, organization}
              else
