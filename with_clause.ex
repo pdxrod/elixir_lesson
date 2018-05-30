@@ -46,11 +46,12 @@ defmodule Organization do
 end
 
 defmodule Main do
-  def main() do
-    result = with organization <-
-               Organization.create_organization( address:
-                  Organization.create_address(street: "1 Broadway") ),
-               :ok <- :ok do
+  def main(params) do
+    result = with address <-
+                Organization.create_address(street: "1 Broadway"),
+                  organization <-
+                Organization.create_organization( %{ address: address } )
+             do
                {:ok, organization}
              else
                %{"error" => reason} -> {:error, reason}
@@ -60,4 +61,4 @@ defmodule Main do
   end
 end
 
-Main.main()
+Main.main( %{ name: "Apple" } )
