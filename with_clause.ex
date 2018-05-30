@@ -41,7 +41,7 @@ defmodule Organization do
   end
 
   def create_organization( params ) do
-    %Organization{name: params[:name], address: params[:address]}
+    %Organization{address: params[:address]}
   end
 end
 
