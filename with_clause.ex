@@ -107,7 +107,6 @@ defmodule Main do
              do
                 {:ok, %{organization | address: address}}
              else
-               %{"error" => reason} -> {:error, reason}
                error -> error
              end
     IO.write "Result - "
