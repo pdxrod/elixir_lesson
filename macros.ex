@@ -120,5 +120,5 @@ StringFunctions.print_out_ls()
 IO.puts """
 
 
-Now run with_error.ex
+Now run with_clause.ex
 """
