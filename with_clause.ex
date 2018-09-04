@@ -118,7 +118,7 @@ defmodule Main do
 end
 
 params = %{street: '1 Broadway'}
-result = Main.main( params )
+Main.main( params )
 
 IO.puts ""
 IO.puts "Finished"

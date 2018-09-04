@@ -119,7 +119,7 @@ err = try do
    1 + "Hello"
 rescue
    RuntimeError -> "You've got a runtime error!"
-   ArithmeticError -> "You've got an Argument error!"
+   ArithmeticError -> "You've got an Arithmetic error!"
 end
 
 IO.inspect err

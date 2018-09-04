@@ -118,7 +118,7 @@ IO.puts( Blank.blank? { a: 1 } )
 # Unimplemented
 try do
   IO.puts( Blank.blank?( IO ))
-rescue e in Protocol.UndefinedError -> e
+rescue _ in Protocol.UndefinedError ->
   IO.puts \"Blank.blank?( IO ) raised a 'Protocol.UndefinedError'\"
 end
 """
@@ -152,8 +152,7 @@ IO.puts(Blank.blank?(a: 1))
 try do
   IO.puts(Blank.blank?(IO))
 rescue
-  e in Protocol.UndefinedError ->
-    e
+  _ in Protocol.UndefinedError ->
     IO.puts("Blank.blank?( IO ) raised a 'Protocol.UndefinedError'")
 end
 
@@ -175,8 +174,7 @@ try do
   IO.puts(Blank.blank?(IO))
   IO.puts(\"Blank.blank?( IO ) did not raise a 'Protocol.UndefinedError'\")
 rescue
-  e in Protocol.UndefinedError ->
-    e
+  _ in Protocol.UndefinedError ->
     IO.puts("Blank.blank?( IO ) raised a 'Protocol.UndefinedError'")
 end
 """
@@ -194,8 +192,7 @@ try do
   IO.puts(Blank.blank?(IO))
   IO.puts("Blank.blank?( IO ) did not raise a 'Protocol.UndefinedError'")
 rescue
-  e in Protocol.UndefinedError ->
-    e
+  _ in Protocol.UndefinedError ->
     IO.puts("Blank.blank?( IO ) raised a 'Protocol.UndefinedError'")
 end
 

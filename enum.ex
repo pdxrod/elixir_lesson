@@ -141,6 +141,8 @@ IO.write "\"\" is a "
 IO.puts Util.typeof ""
 IO.write "5.6 is a "
 IO.puts Util.typeof 5.6
+IO.write "Util is a "
+IO.puts Util.typeof Util
 """
 
 defmodule Util do
@@ -159,6 +161,8 @@ IO.write "\"\" is a "
 IO.puts Util.typeof ""
 IO.write "5.6 is a "
 IO.puts Util.typeof 5.6
+IO.write "Util is a "
+IO.puts Util.typeof Util
 
 IO.puts """
 

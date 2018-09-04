@@ -1,5 +1,10 @@
 #! /usr/bin/env elixir
 
+IO.puts ""
+IO.puts "See all the warnings about redefining modules"
+IO.puts "Redefining a module, adding a function, doesn't add to the module,"
+IO.puts "like it would in Ruby - it overwrites the previous definition with the new one"
+IO.puts ""
 IO.gets "Hit enter to continue "
 IO.puts ""
 
@@ -157,7 +162,7 @@ IO.puts(result)
 
 IO.puts """
 
-More anonymous functions
+Another way of defining functions
 handle_result = fn
    \{var1\} -> IO.puts(\"\#\{var1\} found in a tuple\!\")
    \{var_2, var_3\} -> IO.puts(\"\#\{var_2\} and \#\{var_3\} found\!\")
@@ -224,9 +229,6 @@ end
 IO.puts(Math.times(5, 6))
 
 IO.puts """
-
-
-The above code doesn't add to Math, like it would in Ruby
 
 try do
   IO.puts( Math.sum( 5, 6 ) )
