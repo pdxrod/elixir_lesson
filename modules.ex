@@ -37,7 +37,7 @@ Foo.foobar
 Foo.Bar.barfoo
 try do
   Foo.barfoo
-rescue e in UndefinedFunctionError -> e
+rescue _ in UndefinedFunctionError ->
   IO.puts \"UndefinedFunctionError\"
 end
 %UndefinedFunctionError{}
@@ -61,8 +61,7 @@ Foo.Bar.barfoo()
 try do
   Foo.barfoo()
 rescue
-  e in UndefinedFunctionError ->
-    e
+  _ in UndefinedFunctionError ->
     IO.puts("UndefinedFunctionError")
 end
 
@@ -91,7 +90,7 @@ IO.puts """
 require Integer
 try do
   IO.puts Integer.is_odd 3
-rescue e in UndefinedFunctionError -> e
+rescue _ in UndefinedFunctionError ->
   IO.puts "UndefinedFunctionError"
 end
 %UndefinedFunctionError{}
@@ -101,8 +100,7 @@ require Integer
 try do
   IO.puts(Integer.is_odd(3))
 rescue
-  e in UndefinedFunctionError ->
-    e
+  _ in UndefinedFunctionError ->
     IO.puts("UndefinedFunctionError")
 end
 
@@ -240,8 +238,7 @@ end
 try do
   IO.puts(Math.sum(5, 6))
 rescue
-  e in UndefinedFunctionError ->
-    e
+  _ in UndefinedFunctionError ->
     IO.puts("UndefinedFunctionError")
 end
 
@@ -258,7 +255,7 @@ end
 IO.puts Greeter.hello("world")
 try do
   IO.puts Greeter.phrase()
-rescue e in UndefinedFunctionError -> e
+rescue _ in UndefinedFunctionError ->
   IO.puts "UndefinedFunctionError"
 end
 """
@@ -273,8 +270,7 @@ IO.puts(Greeter.hello("world"))
 try do
   IO.puts(Greeter.phrase())
 rescue
-  e in UndefinedFunctionError ->
-    e
+  _ in UndefinedFunctionError ->
     IO.puts("UndefinedFunctionError")
 end
 

@@ -44,7 +44,6 @@ end
 
 IO.puts """
 
-
 Regular expressions
 
 regex = ~r/foo|bar/
@@ -83,7 +82,8 @@ end
 err = try do
   Foo.barfoo
 rescue
-  e in UndefinedFunctionError -> e
+  _ in UndefinedFunctionError ->
+    IO.puts "UndefinedFunctionError
 end
 IO.inspect err
 """
@@ -97,7 +97,8 @@ end
 err = try do
   Foo.barfoo
 rescue
-  e in UndefinedFunctionError -> e
+  _ in UndefinedFunctionError ->
+    IO.puts "UndefinedFunctionError"
 end
 IO.inspect err
 
@@ -106,10 +107,10 @@ IO.puts """
 Multiple error handling matchers
 
 err = try do
-   1 + \"Hello\"
+   1 + "Hello"
 rescue
-   RuntimeError -> \"You've got a runtime error!\"
-   ArithmeticError -> \"You've got a Argument error!\"
+   RuntimeError -> "You've got a runtime error!"
+   ArithmeticError -> "You've got an Argument error!"
 end
 
 IO.inspect err
@@ -118,7 +119,7 @@ err = try do
    1 + "Hello"
 rescue
    RuntimeError -> "You've got a runtime error!"
-   ArithmeticError -> "You've got a Argument error!"
+   ArithmeticError -> "You've got an Argument error!"
 end
 
 IO.inspect err
@@ -155,29 +156,29 @@ IO.puts """
 The use of 'after' to guarantee something which should happen,
 happens after an error is caught
 
-{:ok, file} = File.open \"newfile\", [:utf8, :write]
-err = try do
-  IO.write file, \"Holá\"
-  raise \"Error\"
-rescue
-  e in RuntimeError -> e
-after
-  IO.puts \"Closing file\\n\"
-  File.close(file)
-end
-IO.puts err.message
-"""
 {:ok, file} = File.open "newfile", [:utf8, :write]
-err = try do
+try do
   IO.write file, "Holá"
   raise "Error"
 rescue
-  e in RuntimeError -> e
+  _ in RuntimeError ->
+    IO.puts "RuntimeError"
 after
-  IO.puts "Closing file\n"
+  IO.puts "Closing file"
   File.close(file)
 end
-IO.puts err.message
+"""
+{:ok, file} = File.open "newfile", [:utf8, :write]
+try do
+  IO.write file, "Holá"
+  raise "Error"
+rescue
+  _ in RuntimeError ->
+    IO.puts "RuntimeError"
+after
+  IO.puts "Closing file"
+  File.close(file)
+end
 
 IO.puts """
 
