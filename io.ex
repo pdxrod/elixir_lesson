@@ -78,7 +78,7 @@ IO.inspect blocks
 blocks = Loop.get_n_blocks( blocks, 2 )
 IO.inspect blocks
 
-IO.puts("""
+IO.puts """
 
 
 
@@ -92,7 +92,7 @@ res = 1..100 |>
       Enum.sum
 IO.puts(res)
 
-""")
+"""
 even? = &(rem(&1, 2) == 0)
 res = 1..10 |>
       Stream.map( & ( &1 * 3 ) ) |>

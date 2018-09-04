@@ -1,6 +1,6 @@
 #! /usr/bin/env elixir
 
-IO.puts("""
+IO.puts """
 Using the Enum module
 
 the_list = [1, 2, 3, 4]
@@ -10,7 +10,7 @@ IO.puts( \"Result of Enum.all? \#{ res } \" )
 
 res = Enum.any?( the_list, fn( s ) -> rem( s, 2 ) == 1 end )
 IO.puts( \"Result of Enum.any? \#{ res } \" )
-""")
+"""
 
 the_list = [1, 2, 3, 4]
 
@@ -20,18 +20,18 @@ IO.puts("Result of Enum.all? #{res} ")
 res = Enum.any?(the_list, fn s -> rem(s, 2) == 1 end)
 IO.puts("Result of Enum.any? #{res} ")
 
-IO.puts("""
+IO.puts """
 
 Using Enum.each to do a loop
 
 the_list = [ "Hello", "Every", "one" ]
 Enum.each( the_list, fn( s ) -> IO.puts( s ) end )
-""")
+"""
 
 the_list = ["Hello", "Every", "one"]
 Enum.each(the_list, fn s -> IO.puts(s) end)
 
-IO.puts("""
+IO.puts """
 
 Enum.map, and IO.puts not working for lists - use IO.inspect
 
@@ -40,7 +40,7 @@ IO.puts \"IO.puts( res )\"
 IO.puts( res )
 IO.puts \"IO.inspect( res )\"
 IO.inspect( res )
-""")
+"""
 
 res = Enum.map([2, 5, 3, 6], fn a -> a * 2 end)
 IO.puts("IO.puts( res )")
@@ -48,7 +48,7 @@ IO.puts(res)
 IO.puts("IO.inspect( res )")
 IO.inspect(res)
 
-IO.puts("""
+IO.puts """
 
 Enum.reduce
 
@@ -61,7 +61,7 @@ res = Enum.reduce( [1, 2, 3, 4], 5, fn( x, accum ) -> x + accum end )
 IO.puts res
 
 Notice that the results are not shown when the code says - both results are shown after both reduces
-""")
+"""
 
 res = Enum.reduce([1, 2, 3, 4], fn x, accum -> x + accum end)
 IO.puts(res)
@@ -69,7 +69,7 @@ IO.puts(res)
 res = Enum.reduce([1, 2, 3, 4], 5, fn x, accum -> x + accum end)
 IO.puts(res)
 
-IO.puts("""
+IO.puts """
 
 
 A more complex example, showing anonymous functions and pipelining with 3 Enum functions
@@ -80,7 +80,7 @@ res = 1..100 |>
       Enum.filter( odd? ) |>
       Enum.sum
 IO.puts(res)
-""")
+"""
 
 odd? = &(rem(&1, 2) != 0)
 
@@ -157,7 +157,7 @@ IO.puts Util.typeof ""
 IO.write "5.6 is a "
 IO.puts Util.typeof 5.6
 
-IO.puts("""
+IO.puts """
 
 Now run structs.ex
-""")
+"""

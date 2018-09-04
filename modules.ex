@@ -1,6 +1,6 @@
 #! /usr/bin/env elixir
 
-IO.puts("""
+IO.puts """
 
 defmodule Math do
    def sum(a, b) do
@@ -8,7 +8,7 @@ defmodule Math do
    end
 end
 IO.puts( Math.sum( 1, 2 ))
-""")
+"""
 
 defmodule Math do
   def sum(a, b) do
@@ -18,7 +18,7 @@ end
 
 IO.puts(Math.sum(1, 2))
 
-IO.puts("""
+IO.puts """
 
 If you do
   elixirc modules.ex
@@ -27,9 +27,9 @@ then run
 then enter
   IO.puts( Math.sum( 1, 2 ))
 you will get the same result
-""")
+"""
 
-IO.puts("""
+IO.puts """
 
 defmodule Foo do
    def foobar do
@@ -49,7 +49,7 @@ rescue e in UndefinedFunctionError -> e
   IO.puts \"UndefinedFunctionError\"
 end
 %UndefinedFunctionError{}
-""")
+"""
 
 defmodule Foo do
   def foobar do
@@ -76,34 +76,36 @@ end
 
 %UndefinedFunctionError{}
 
-IO.puts("""
+IO.puts """
 
 alias Foo.Bar, as: Bar
 Bar.barfoo
-""")
+"""
 
 alias Foo.Bar, as: Bar
 Bar.barfoo()
 
-IO.puts("""
+IO.puts """
 
 alias String, as: Str
 IO.puts(Str.length("Hello"))
-""")
+"""
 
 alias String, as: Str
 IO.puts(Str.length("Hello"))
 
-IO.puts("""
+IO.puts """
 
+require Integer
 try do
   IO.puts Integer.is_odd 3
 rescue e in UndefinedFunctionError -> e
   IO.puts "UndefinedFunctionError"
 end
 %UndefinedFunctionError{}
-""")
+"""
 
+require Integer
 try do
   IO.puts(Integer.is_odd(3))
 rescue
@@ -114,23 +116,23 @@ end
 
 %UndefinedFunctionError{}
 
-IO.puts("""
+IO.puts """
 
 require Integer
 IO.puts Integer.is_odd 3
-""")
+"""
 
 require Integer
 IO.puts(Integer.is_odd(3))
 
-IO.puts("""
+IO.puts """
 
 import List, only: [duplicate: 2]
 
 IO.inspect duplicate("hello", 3)
 list_in_a_list = duplicate([1, 2], 2)
 IO.inspect list_in_a_list
-""")
+"""
 
 import List, only: [duplicate: 2]
 
@@ -138,32 +140,32 @@ IO.inspect(duplicate("hello", 3))
 list_in_a_list = duplicate([1, 2], 2)
 IO.inspect(list_in_a_list)
 
-IO.puts("""
+IO.puts """
 
 
 Anonymous functions
 sum = fn ( a, b ) -> a + b end
 result = sum.( 1, 5 )
 IO.puts result
-""")
+"""
 
 sum = fn a, b -> a + b end
 result = sum.(1, 5)
 IO.puts(result)
 
-IO.puts("""
+IO.puts """
 
 Also anonymous functions
 sum = &( &1 + &2 )
 result = sum.( 1, 2 )
 IO.puts result
-""")
+"""
 
 sum = &(&1 + &2)
 result = sum.(1, 2)
 IO.puts(result)
 
-IO.puts("""
+IO.puts """
 
 More anonymous functions
 handle_result = fn
@@ -172,7 +174,7 @@ handle_result = fn
 end
 handle_result.( \{ \"Hey people\" \} )
 handle_result.( \{ \"Hello\", \"World\" \} )
-""")
+"""
 
 handle_result = fn
   {var1} -> IO.puts("#{var1} found in a tuple!")
@@ -182,7 +184,7 @@ end
 handle_result.({"Hey people"})
 handle_result.({"Hello", "World"})
 
-IO.puts("""
+IO.puts """
 
 
 Named function shorthand and redefining a module
@@ -198,7 +200,7 @@ defmodule Math do
 end
 
 IO.puts( Math.sum( 5, 6 ) )
-""")
+"""
 
 defmodule Math do
   def sum(a, b) do
@@ -214,7 +216,7 @@ end
 
 IO.puts(Math.sum(5, 6))
 
-IO.puts("""
+IO.puts """
 
 
 Function shorthand
@@ -223,7 +225,7 @@ defmodule Math do
    def times(a, b), do: a * b
 end
 IO.puts Math.times( 5, 6 )
-""")
+"""
 
 defmodule Math do
   def times(a, b), do: a * b
@@ -231,7 +233,7 @@ end
 
 IO.puts(Math.times(5, 6))
 
-IO.puts("""
+IO.puts """
 
 
 The above code doesn't add to Math, like it would in Ruby
@@ -241,7 +243,7 @@ try do
 REE
   IO.puts \"UndefinedFunctionError\"
 end
-""")
+"""
 
 try do
   IO.puts(Math.sum(5, 6))
@@ -251,7 +253,7 @@ rescue
     IO.puts("UndefinedFunctionError")
 end
 
-IO.puts("""
+IO.puts """
 
 
 Private functions
@@ -267,7 +269,7 @@ try do
 rescue e in UndefinedFunctionError -> e
   IO.puts "UndefinedFunctionError"
 end
-""")
+"""
 
 defmodule Greeter do
   def hello(name), do: phrase() <> name
@@ -284,7 +286,7 @@ rescue
     IO.puts("UndefinedFunctionError")
 end
 
-IO.puts("""
+IO.puts """
 
 
 Default value for a function argument
@@ -301,7 +303,7 @@ IO.puts Greater.hello(\"Ayush\", \"en\")
 IO.puts Greater.hello(\"Ayush\")
 IO.puts Greater.hello(\"Ayush\", \"es\")
 
-""")
+"""
 
 defmodule Greater do
   def hello(name, country \\ "en") do
@@ -316,7 +318,7 @@ IO.puts(Greater.hello("Ayush", "en"))
 IO.puts(Greater.hello("Ayush"))
 IO.puts(Greater.hello("Ayush", "es"))
 
-IO.puts("""
+IO.puts """
 
 Recursion
 
@@ -335,7 +337,7 @@ You have to do something
 
 end
 ListPrint.print(a)
-""")
+"""
 
 a = ["Hey", 100, 452, true, "People"]
 
@@ -350,7 +352,7 @@ end
 
 ListPrint.print(a)
 
-IO.puts("""
+IO.puts """
 
 Loops using recursion
 
@@ -366,7 +368,7 @@ defmodule Loop do
 end
 
 Loop.print_multiple_times( "Hello", 5 )
-""")
+"""
 
 defmodule Loop do
   def print_multiple_times(msg, n) when n <= 1 do
@@ -381,8 +383,8 @@ end
 
 Loop.print_multiple_times("Hello", 5)
 
-IO.puts("""
+IO.puts """
 
 Now run enum.ex
 
-""")
+"""

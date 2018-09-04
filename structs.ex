@@ -1,6 +1,6 @@
 #! /usr/bin/env elixir
 
-IO.puts("""
+IO.puts """
 
 Structs
 
@@ -34,7 +34,7 @@ Main.main
 
 (from https://stackoverflow.com/questions/39576209/elixir-cannot-access-struct#39576345)
 
-""")
+"""
 
 defmodule User do
   defstruct name: "John", age: 27
@@ -53,7 +53,7 @@ end
 
 Main.main()
 
-IO.puts("""
+IO.puts """
 
 More
 
@@ -66,7 +66,7 @@ defmodule NotMain do
   end
 end
 NotMain.main
-""")
+"""
 
 defmodule NotMain do
   def main do
@@ -79,7 +79,7 @@ end
 
 NotMain.main()
 
-IO.puts("""
+IO.puts """
 
 Protocols
 
@@ -118,7 +118,7 @@ try do
 rescue e in Protocol.UndefinedError -> e
   IO.puts \"Blank.blank?( IO ) raised a 'Protocol.UndefinedError'\"
 end
-""")
+"""
 
 defprotocol Blank do
   def blank?(data)
