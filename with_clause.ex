@@ -1,7 +1,9 @@
 #! /usr/bin/env elixir
 
-IO.puts """
+IO.gets "Hit enter to continue "
+IO.puts ""
 
+IO.puts """
 with clause
 
 opts = %{width: 10, height: 15}

@@ -12,37 +12,6 @@ IO.puts ""
 
 IO.puts """
 try do
-  [_, [_, {a}]] = ["Random string", [:an_atom, :another_atom]]
-  IO.puts(a)
-rescue
-  e in MatchError -> e
-end
-"""
-
-try do
-  [_, [_, {a}]] = ["Random string", [:an_atom, :another_atom]]
-  IO.puts(a)
-rescue
-  e in MatchError -> e
-end
-
-%MatchError{term: ["Random string", [:an_atom, :another_atom]]}
-IO.puts("%MatchError{term: [\"Random string\", [:an_atom, :another_atom]]}")
-IO.puts("")
-
-IO.puts """
-a = 25
-b = 25
-^a = b
-"""
-
-a = 25
-b = 25
-^a = b
-IO.puts("")
-
-IO.puts """
-try do
   a = 24
   b = 25
   ^a = b
@@ -61,7 +30,7 @@ rescue
     IO.puts("MatchError")
 end
 
-IO.puts("")
+IO.puts ""
 
 IO.puts """
 n = 10
@@ -80,21 +49,7 @@ case x do
   {:ok, y} -> IO.puts(y)
 end
 
-IO.puts("")
-
-IO.puts """
-case x do
-  {z, _} -> IO.puts z
-  {:ok, y} -> IO.puts y
-end
-"""
-
-case x do
-  {z, _} -> IO.puts(z)
-  {:ok, y} -> IO.puts(y)
-end
-
-IO.puts("")
+IO.puts ""
 
 IO.puts """
 case x do
@@ -108,7 +63,7 @@ case x do
   {:ok, y} -> IO.puts(y)
 end
 
-IO.puts("")
+IO.puts ""
 
 IO.puts """
 var_1 = "Hello world"
@@ -129,11 +84,11 @@ else
   IO.puts("\"#{var_1}\" and \"#{var_2}\" are not the same")
 end
 
-IO.puts("")
+IO.puts ""
 
 IO.puts("IO.puts(String.reverse(\"Elixir\"))")
 IO.puts(String.reverse("Elixir"))
-IO.puts("")
+IO.puts ""
 
 IO.puts """
 IO.puts(String.match?(\"foo\", ~r/foo/))
@@ -142,11 +97,11 @@ IO.puts(String.match?(\"bar\", ~r/foo/))
 
 IO.puts(String.match?("foo", ~r/foo/))
 IO.puts(String.match?("bar", ~r/foo/))
-IO.puts("")
+IO.puts ""
 
 IO.puts("IO.puts(\"foo\" =~ ~r/foo/)")
 IO.puts("foo" =~ ~r/foo/)
-IO.puts("")
+IO.puts ""
 
 IO.puts """
 a = String.at( \"foobar\", 3 )
@@ -167,7 +122,7 @@ if b === nil do
   IO.puts("b is nil")
 end
 
-IO.puts("")
+IO.puts ""
 
 IO.puts("Difference between 'single quotes' and \"double quotes\"")
 

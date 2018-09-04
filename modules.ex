@@ -1,5 +1,8 @@
 #! /usr/bin/env elixir
 
+IO.gets "Hit enter to continue "
+IO.puts ""
+
 IO.puts """
 
 defmodule Math do
@@ -17,17 +20,6 @@ defmodule Math do
 end
 
 IO.puts(Math.sum(1, 2))
-
-IO.puts """
-
-If you do
-  elixirc modules.ex
-then run
-  iex
-then enter
-  IO.puts( Math.sum( 1, 2 ))
-you will get the same result
-"""
 
 IO.puts """
 

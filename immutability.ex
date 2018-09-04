@@ -1,5 +1,8 @@
 #! /usr/bin/env elixir
 
+IO.gets "Hit enter to continue "
+IO.puts ""
+
 IO.puts """
 
 Immutability of objects in Elixir
