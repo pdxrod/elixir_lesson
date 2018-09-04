@@ -186,7 +186,6 @@ IO.puts(new_map[:new_val])
 
 IO.puts """
 
-Maps have to use :a =>, not a:
 map = %{ :a => 1, 2 => :b }
 new_map = %{ map | a: 25 }
 IO.puts( new_map[ :a ] )
