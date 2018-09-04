@@ -238,7 +238,7 @@ The above code doesn't add to Math, like it would in Ruby
 
 try do
   IO.puts( Math.sum( 5, 6 ) )
-rescue e in UndefinedFunctionError -> e
+REE
   IO.puts \"UndefinedFunctionError\"
 end
 """)
